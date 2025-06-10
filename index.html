@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Espelho Folha Ponto - Prototipo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Espelho Mensal da Folha Ponto</h1>
+    </header>
+    <main>
+        <section class="pdf-container">
+            <embed src="folha-ponto.pdf" type="application/pdf" width="100%" height="600px" />
+            <p class="no-pdf">
+                Seu navegador não suporta visualização de PDF. <a href="folha-ponto.pdf" target="_blank">Clique aqui para baixar o PDF</a>.
+            </p>
+        </section>
+        <section class="actions">
+            <button onclick="window.history.back()">Voltar</button>
+            <button onclick="window.print()">Imprimir</button>
+            <button onclick="abrirModalAssinatura()">Assinar</button>
+        </section>
+    </main>
+    <!-- Modal Opções de Assinatura -->
+    <div id="modalAssinatura" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalAssinatura')">&times;</span>
+            <h2>Escolha o tipo de assinatura</h2>
+            <button onclick="modalSimples()">Simples</button>
+            <button onclick="modalClickSign()">ClickSign</button>
+            <button onclick="modalGovBr()">GovBr</button>
+        </div>
+    </div>
+    <!-- Modal Assinatura Simples -->
+    <div id="modalSimples" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalSimples')">&times;</span>
+            <h3>Você tem certeza que deseja assinar este documento?</h3>
+            <button onclick="assinarSimples()">Sim</button>
+            <button onclick="fecharModal('modalSimples')">Não</button>
+        </div>
+    </div>
+    <!-- Modal Sucesso Simples -->
+    <div id="modalSimplesSucesso" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalSimplesSucesso')">&times;</span>
+            <h3>Documento assinado com sucesso!</h3>
+            <p><b>Data/Hora:</b> <span id="simplesData"></span></p>
+            <p><b>IP:</b> <span id="simplesIp"></span></p>
+            <p><b>Hash (SHA-256):</b> <span id="simplesHash"></span></p>
+            <p><b>Usuário:</b> João da Silva</p>
+            <p><b>CPF:</b> 123.456.789-00</p>
+            <p><b>Browser:</b> <span id="simplesBrowser"></span></p>
+        </div>
+    </div>
+    <!-- Modal Clicksign Simulada -->
+    <div id="modalClickSign" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalClickSign')">&times;</span>
+            <h3>Simulação de assinatura ClickSign</h3>
+            <p>O documento foi enviado para o seu WhatsApp.</p>
+            <p>Por favor, verifique a mensagem e siga as instruções para assinar.</p>
+            <button onclick="assinarClickSign()">Simular Assinatura</button>
+        </div>
+    </div>
+    <div id="modalClickSignSucesso" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalClickSignSucesso')">&times;</span>
+            <h3>Assinatura via ClickSign simulada!</h3>
+            <p>Documento assinado eletronicamente em <span id="clickSignData"></span>.</p>
+        </div>
+    </div>
+    <!-- Modal GovBr Simulada -->
+    <div id="modalGovBr" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalGovBr')">&times;</span>
+            <h3>Simulação Gov.Br</h3>
+            <ol>
+                <li><a href="folha-ponto.pdf" download>Baixe o PDF da folha ponto</a></li>
+                <li><a href="https://assinador.iti.br/" target="_blank">Acesse o site do Assinador Gov.br</a></li>
+                <li>Assine o documento no site gov.br</li>
+                <li>Faça o download do PDF assinado</li>
+                <li>Envie o arquivo assinado aqui:</li>
+            </ol>
+            <input type="file" accept="application/pdf">
+        </div>
+    </div>
+    <div id="modalGovBrSucesso" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal('modalGovBrSucesso')">&times;</span>
+            <h3>Assinatura via Gov.Br simulada!</h3>
+            <p>Documento assinado eletronicamente pelo Gov.Br em <span id="govBrData"></span>.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
