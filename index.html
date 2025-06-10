@@ -5,6 +5,94 @@
     <title>Espelho Folha Ponto - Prototipo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #1e3a8a;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .pdf-container embed {
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        button {
+            background-color: #2563eb;
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .modal {
+        display: none; /* mantém oculto inicialmente */
+        position: fixed;
+        z-index: 9999;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            text-align: center;
+        }
+        .modal-content button, .modal-content input[type="file"] {
+            margin-top: 1rem;
+        }
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: #6b7280;
+            cursor: pointer;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ol {
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,6 +111,7 @@
             <button onclick="abrirModalAssinatura()">Assinar</button>
         </section>
     </main>
+
     <!-- Modal Opções de Assinatura -->
     <div id="modalAssinatura" class="modal">
         <div class="modal-content">
@@ -33,6 +122,7 @@
             <button onclick="modalGovBr()">GovBr</button>
         </div>
     </div>
+
     <!-- Modal Assinatura Simples -->
     <div id="modalSimples" class="modal">
         <div class="modal-content">
@@ -42,7 +132,7 @@
             <button onclick="fecharModal('modalSimples')">Não</button>
         </div>
     </div>
-    <!-- Modal Sucesso Simples -->
+
     <div id="modalSimplesSucesso" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal('modalSimplesSucesso')">&times;</span>
@@ -55,6 +145,7 @@
             <p><b>Browser:</b> <span id="simplesBrowser"></span></p>
         </div>
     </div>
+
     <!-- Modal Clicksign Simulada -->
     <div id="modalClickSign" class="modal">
         <div class="modal-content">
@@ -65,6 +156,7 @@
             <button onclick="assinarClickSign()">Simular Assinatura</button>
         </div>
     </div>
+
     <div id="modalClickSignSucesso" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal('modalClickSignSucesso')">&times;</span>
@@ -72,6 +164,7 @@
             <p>Documento assinado eletronicamente em <span id="clickSignData"></span>.</p>
         </div>
     </div>
+
     <!-- Modal GovBr Simulada -->
     <div id="modalGovBr" class="modal">
         <div class="modal-content">
@@ -85,8 +178,11 @@
                 <li>Envie o arquivo assinado aqui:</li>
             </ol>
             <input type="file" accept="application/pdf">
+            <br>
+            <button onclick="alert('Arquivo enviado com sucesso!')">Enviar Arquivo</button>
         </div>
     </div>
+
     <div id="modalGovBrSucesso" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal('modalGovBrSucesso')">&times;</span>
@@ -94,6 +190,7 @@
             <p>Documento assinado eletronicamente pelo Gov.Br em <span id="govBrData"></span>.</p>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
